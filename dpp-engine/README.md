@@ -33,69 +33,45 @@ Built with **Java Spring Boot** and **PostgreSQL**, this engine acts as the "Bra
 
 ---
 
+# 🍃 GreenChain - Digital Product Passport Engine
+
+![Java](https://img.shields.io/badge/Java-21-orange) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4.1-green) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)
+
+> **"From Farm to Phone: Tracking Sustainability One Scan at a Time."**
+
+## 📖 Overview
+**GreenChain** is a robust backend engine designed to power **Digital Product Passports (DPP)**. It brings transparency to supply chains by tracking a product's entire lifecycle—from raw material harvesting to final retail delivery.
+
+---
+
 ## 🔌 API Documentation
 
 ### **1. Product Management**
-*Manage the physical items in the chain.*
-
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | **/api/products** | Retrieve a list of all products |
-| `POST` | **/api/products** | Register a new product |
+| `GET` | `/api/products` | Retrieve a list of all products |
+| `POST` | `/api/products` | Register a new product |
 
-**📝 Sample JSON (Create Product):**
-```json
-{
-  "name": "Organic Cotton Bale",
-  "type": "RAW_MATERIAL",
-  "baseCo2Impact": 12.5,
-  "description": "Harvested from Farm A, Batch #502"
-}
+### **2. Supply Chain Events**
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/events?productId={id}` | View the full timeline of a product |
+| `POST` | `/api/events?productId={id}` | Add a new event (e.g., Transport) |
 
-2. Supply Chain Events (The Passport)
-Add stamps to the product's history.
-Method,Endpoint,Description
-GET,/api/events?productId={id},View the full timeline of a product
-POST,/api/events?productId={id},"Add a new event (e.g., Transport, Processing)"
+### **3. Passport Interface**
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/products/{id}/qr` | **Returns an Image (PNG)** of the QR Code |
 
-{
-  "eventType": "TRANSPORT",
-  "location": "Highway NH48",
-  "details": "Transported by truck GJ-01. Temp: 24C"
-}
+---
 
-Method,Endpoint,Description
-GET,/api/products/{id}/qr,Returns an Image (PNG) of the QR Code
+## ⚙️ How to Run Locally
 
-
-⚙️ How to Run Locally
-Clone the Repository
-
-Bash
-git clone [https://github.com/YOUR_USERNAME/greenchain-dpp-backend.git](https://github.com/YOUR_USERNAME/greenchain-dpp-backend.git)
-Configure Database
-
-Ensure PostgreSQL is running.
-
-Create a database named greenchain_db.
-
-Update src/main/resources/application.properties with your username/password.
-
-Run the Engine
-
-Open the project in IntelliJ IDEA.
-
-Run DppEngineApplication.java.
-
-Test
-
-Open Postman or your Browser.
-
-Visit: http://localhost:8080/api/products
-
-🔮 Future Roadmap
-[ ] Frontend Dashboard: Building a React.js Admin Panel.
-
-[ ] Blockchain Integration: Hashing events for immutable security.
-
-[ ] Consumer App: Mobile interface for scanning QR codes in stores.
+1.  **Clone the Repository**
+    ```bash
+    git clone [https://github.com/Sarthakdale/greenchain-dpp-backend.git](https://github.com/Sarthakdale/greenchain-dpp-backend.git)
+    ```
+2.  **Configure Database**
+    * Update `src/main/resources/application.properties` with your PostgreSQL credentials.
+3.  **Run the Engine**
+    * Run `DppEngineApplication.java` in IntelliJ.
